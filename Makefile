@@ -136,12 +136,17 @@ ptpip$(EXE): ptpip.c sockutil.c
 
 
 
-prefix = /usr/local
+prefix = usr/local
 bindir = $(prefix)/bin
 sharedir = $(prefix)/share
 
+#D = $(ls | grep -v extras)
+
 install: all
-	install chdkptp $(DESTDIR)$(bindir)
+	install chdkptp $(DESTDIR)$(sharedir)/chdkptp
+	install chdkptp.sh $(DESTDIR)$(bindir)/
+	install lua/extras/* $(DESTDIR)$(sharedir)/chdkptp/lua/extras
+	install lua/* $(DESTDIR)$(sharedir)/chdkptp/lua
 
 include bottom.mk
 
